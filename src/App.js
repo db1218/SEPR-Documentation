@@ -7,7 +7,10 @@ import {
 import "./layout.css"
 import Header from './components/header.js';
 import Dashboard from './pages/Dashboard.js';
-import Page2 from './pages/Page2.js';
+import Requirements from './pages/Requirements';
+import RiskAssessment from './pages/RiskAssessment';
+import Architecture from './pages/Architecture';
+import Menu from './pages/Menu';
 
 export default function App() {
   return (
@@ -26,8 +29,17 @@ export default function App() {
         paddingTop: 0,
       }}>
         <Switch >
-          <Route path="/page2">
-            <Page2 />
+          <Route path="/architecture">
+            <Architecture />
+          </Route>
+          <Route path="/riskassessment">
+            <RiskAssessment />
+          </Route>
+          <Route path="/requirements">
+            <Requirements />
+          </Route>
+          <Route path="/menu">
+            <Menu />
           </Route>
           <Route path="/">
             <Dashboard />
