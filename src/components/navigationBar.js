@@ -1,18 +1,24 @@
 import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { NavigationOptions } from "../config";
 
 const NavBarOption = ({ option }) => (
     <div style={{
-        marginRight: '.45rem'
+        marginRight: '1.5rem',
     }}>
         <Link to={option.link}>
-            <h6 style={{
-                color: 'white'
+            {option.title !== "Menu" ? <h6 style={{
+                color: 'white',
+                margin: 0,
             }}>
                 {option.title}
             </h6>
+            :
+            <FontAwesomeIcon icon={faBars} size="lg" />
+            }
         </Link>
     </div>  
 )
@@ -24,7 +30,7 @@ const NavigationBar = ({ screenSize }) => {
     //TODO calculate values dynamically
     const siteTitleWidth = 500;
     const optionWidth = 225;
-    const subsequentOptionDifference = 50;
+    const subsequentOptionDifference = 53;
     const remainingWidth = screenSize - siteTitleWidth;
 
     useEffect(() => {
