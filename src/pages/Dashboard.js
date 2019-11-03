@@ -1,7 +1,5 @@
 import React from "react"
 import "../layout.css"
-import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button'
 
 export default class Dashboard extends React.Component {
     render() {
@@ -9,10 +7,11 @@ export default class Dashboard extends React.Component {
            <div>
                <h1>Welcome to Team 11's documentation site</h1>
                <p>Over time we will add details about our project</p>
+
+
+               
                <div>
-                <Link to="/page2">
-                    <Button>Page-2</Button>
-                </Link>
+                <a href="https://github.com/ArchieGodfrey/SEPR-Documentation"><h5>The Github repo for this project can be found here</h5></a>
                </div>
            </div>
         )
