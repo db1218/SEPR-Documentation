@@ -37,9 +37,9 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
+  DeviceWidth: PropTypes.number,
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
+  DeviceWidth: window.innerWidth,
 }
