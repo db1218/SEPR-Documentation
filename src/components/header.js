@@ -38,7 +38,6 @@ export default class Header extends React.Component {
   }
   
   render() {
-    const { siteTitle } = this.props;
     const { width } = this.state;
     return (
       <header
@@ -59,7 +58,7 @@ export default class Header extends React.Component {
             }}>
             <Link to="/">
               <h1 style={{ margin: 0, color: 'white' }}>
-                  {siteTitle}
+                  {width >= 550 ? "SEPR-Documentation" : "SEPR"}
                 </h1>
             </Link>
             <NavigationBar  screenSize={width} />
