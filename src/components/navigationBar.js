@@ -1,12 +1,7 @@
 import PropTypes from "prop-types"
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
-
-const NavigationOptions = [
-    { id: 0, title: "Requirements", link: "/page2"},
-    { id: 1, title: "Architecture", link: "/page2"},
-    { id: 2, title: "Risk Assessment", link: "/page2"}
-  ]
+import { NavigationOptions } from "../config";
 
 const NavBarOption = ({ option }) => (
     <div style={{
@@ -40,7 +35,7 @@ const NavigationBar = ({ screenSize }) => {
                 if ((i + 1) * (optionWidth - (i * subsequentOptionDifference)) <= remainingWidth && !menuNeeded) {
                     filteredOptions.push(option)
                 } else {
-                    !menuNeeded && filteredOptions.push({id: i, title: "Menu", link: "/page2"});
+                    !menuNeeded && filteredOptions.push({id: i, title: "Menu", link: "/menu"});
                     menuNeeded = true;
                 }
                 return setViewableItems(filteredOptions);
