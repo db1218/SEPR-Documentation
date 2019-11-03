@@ -4,41 +4,9 @@ import { Link } from "react-router-dom";
 
 import NavigationBar from "./navigationBar"
 
-function throttle (callback, limit) {
-  var wait = false;
-  return function () {
-      if (!wait) {
-          callback.call();
-          wait = true;
-          setTimeout(function () {
-              wait = false;
-          }, limit);
-      }
-  }
-}
-
 export default class Header extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      width: window.innerWidth,
-    };
-  }
-  
-  handleWindowResize = () => {
-    this.setState({ width: window.innerWidth })
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', throttle(this.handleWindowResize, 50));
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWindowResize);
-  }
-  
   render() {
-    const { width } = this.state;
+    const { DeviceWidth } = this.props;
     return (
       <header
           style={{
@@ -58,10 +26,10 @@ export default class Header extends React.Component {
             }}>
             <Link to="/">
               <h1 style={{ margin: 0, color: 'white' }}>
-                  {width >= 550 ? "SEPR-Documentation" : "SEPR"}
+                  {DeviceWidth >= 550 ? "SEPR-Documentation" : "SEPR"}
                 </h1>
             </Link>
-            <NavigationBar  screenSize={width} />
+            <NavigationBar screenSize={DeviceWidth} />
           </div>
         </header>
     )
