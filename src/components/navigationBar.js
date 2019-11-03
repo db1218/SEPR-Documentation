@@ -28,8 +28,8 @@ const NavigationBar = ({ screenSize }) => {
     const [currentSize, setCurrentSize ] = useState(screenSize);
 
     //TODO calculate values dynamically
-    const siteTitleWidth = 500;
-    const optionWidth = 225;
+    const siteTitleWidth = 550;
+    const optionWidth = 250;
     const subsequentOptionDifference = 53;
     const remainingWidth = screenSize - siteTitleWidth;
 
