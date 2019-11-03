@@ -30,7 +30,7 @@ export default class Header extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', throttle(this.handleWindowResize, 100));
+    window.addEventListener('resize', throttle(this.handleWindowResize, 50));
   }
 
   componentWillUnmount() {
