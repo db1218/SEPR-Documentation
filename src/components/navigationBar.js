@@ -28,21 +28,19 @@ const NavigationBar = ({ screenSize }) => {
     const remainingWidth = screenSize - siteTitleWidth;
 
     useEffect(() => {
-        if (currentSize !== screenSize) {
-            const filteredOptions = [];
-            let menuNeeded = false;
-            NavigationOptions.map((option, i) => {
-                if ((i + 1) * (optionWidth - (i * subsequentOptionDifference)) <= remainingWidth && !menuNeeded) {
-                    filteredOptions.push(option)
-                } else {
-                    !menuNeeded && filteredOptions.push({id: i, title: "Menu", link: "/menu"});
-                    menuNeeded = true;
-                }
-                return setViewableItems(filteredOptions);
-            })
-            setCurrentSize(screenSize);
-        }
-    }, [currentSize, screenSize, remainingWidth])
+        const filteredOptions = [];
+        let menuNeeded = false;
+        NavigationOptions.map((option, i) => {
+            if ((i + 1) * (optionWidth - (i * subsequentOptionDifference)) <= remainingWidth && !menuNeeded) {
+                filteredOptions.push(option)
+            } else {
+                !menuNeeded && filteredOptions.push({id: i, title: "Menu", link: "/menu"});
+                menuNeeded = true;
+            }
+            return setViewableItems(filteredOptions);
+        })
+        setCurrentSize(screenSize);
+    }, [currentSize, remainingWidth, screenSize])
 
     return(
     <div>
@@ -53,7 +51,6 @@ const NavigationBar = ({ screenSize }) => {
             justifyContent: 'space-between',
             margin: 0,
         }}>
-            {console.log(viewableItems)}
             {viewableItems.map(option => <NavBarOption key={option.id} option={option} />)}
         </div>
     </div>
@@ -61,11 +58,19 @@ const NavigationBar = ({ screenSize }) => {
 }
 
 NavigationBar.propTypes = {
-  smallscreen: PropTypes.bool,
+    screenSize: PropTypes.number,
 }
 
 NavigationBar.defaultProps = {
-    smallscreen: false,
+    screenSize: 0,
+}
+
+NavBarOption.propTypes = {
+    option: PropTypes.object,
+}
+
+NavBarOption.defaultProps = {
+    option: {id: 0, title: "Menu", link: "/menu"},
 }
 
 export default NavigationBar
