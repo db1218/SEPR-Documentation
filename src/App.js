@@ -12,7 +12,7 @@ import RiskAssessment from './pages/RiskAssessment';
 import Architecture from './pages/Architecture';
 import Menu from './pages/Menu';
 
-const DeviceWidthContext = createContext(window.innerWidth);
+const DeviceInfoContext = createContext(window.innerWidth);
 
 function throttle (callback, limit) {
   var wait = false;
@@ -29,13 +29,22 @@ function throttle (callback, limit) {
 
 export default function App() {
   const [width, setWidth] = useState(window.innerWidth);
+  const [previousPath, setPreviousPath] = useState("/");
+  const [currentPath, setCurrentPath] = useState("/");
+
+  const updateCurrentPath = (path) => {
+    if (path !== currentPath) {
+      setCurrentPath(path);
+      setPreviousPath(currentPath);
+    }
+  }
 
   const handleWindowResize = () => {
-    setWidth(window.innerWidth)
+    setWidth(window.innerWidth);
   }
 
   useEffect(() => {
-    window.addEventListener('resize', throttle(handleWindowResize, 50));
+    window.addEventListener('resize', throttle(handleWindowResize, 250));
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
@@ -49,8 +58,8 @@ export default function App() {
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossOrigin="anonymous"
       />
-        <DeviceWidthContext.Provider value={{ width }}>
-          <Header DeviceWidth={width} />
+        <DeviceInfoContext.Provider value={{ width, currentPath, previousPath, updateCurrentPath }}>
+          <Header DeviceWidth={width} history={{currentPath, previousPath, updateCurrentPath}} />
           <div style={{
             margin: `0 auto`,
             maxWidth: 960,
@@ -68,14 +77,14 @@ export default function App() {
                 <Requirements />
               </Route>
               <Route path="/menu">
-                <Menu />
+                <Menu history={{currentPath, previousPath, updateCurrentPath}} />
               </Route>
               <Route path="/">
                 <Dashboard DeviceWidth={width} />
               </Route>
             </Switch>
           </div>
-        </DeviceWidthContext.Provider>  
+        </DeviceInfoContext.Provider>  
     </Router>
   );
 }

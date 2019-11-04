@@ -6,7 +6,7 @@ import NavigationBar from "./navigationBar"
 
 export default class Header extends React.Component {
   render() {
-    const { DeviceWidth } = this.props;
+    const { DeviceWidth, history } = this.props;
     return (
       <header
           style={{
@@ -29,7 +29,7 @@ export default class Header extends React.Component {
                   {DeviceWidth >= 550 ? "SEPR-Documentation" : "SEPR"}
                 </h1>
             </Link>
-            <NavigationBar screenSize={DeviceWidth} />
+            <NavigationBar screenSize={DeviceWidth} history={history} />
           </div>
         </header>
     )

@@ -5,11 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { NavigationOptions } from "../config";
 
-const NavBarOption = ({ option }) => (
+const NavBarOption = ({ option, history }) => (
     <div style={{
         marginRight: '1.5rem',
-    }}>
-        <Link to={option.link}>
+    }}
+        onClick={() => history.updateCurrentPath(history.currentPath === option.link ? history.previousPath : option.link)}
+    >
+        <Link to={history.currentPath === option.link ? history.previousPath : option.link}>
             {option.title !== "Menu" ? <h6 style={{
                 color: 'white',
                 margin: 0,
@@ -23,21 +25,21 @@ const NavBarOption = ({ option }) => (
     </div>  
 )
 
-const NavigationBar = ({ screenSize }) => {
+const NavigationBar = ({ screenSize, history }) => {
     const [viewableItems, setViewableItems ] = useState(NavigationOptions);
     const [currentSize, setCurrentSize ] = useState(screenSize);
 
     //TODO calculate values dynamically
-    const siteTitleWidth = 550;
-    const optionWidth = 250;
-    const subsequentOptionDifference = 53;
+    const siteTitleWidth = 500;
+    const optionWidth = 200;
+    const subsequentOptionDifference = 10;
     const remainingWidth = screenSize - siteTitleWidth;
 
     useEffect(() => {
         const filteredOptions = [];
         let menuNeeded = false;
         NavigationOptions.map((option, i) => {
-            if ((i + 1) * (optionWidth - (i * subsequentOptionDifference)) <= remainingWidth && !menuNeeded) {
+            if ((i + 1) * (optionWidth - ((i + 1) * subsequentOptionDifference)) <= remainingWidth && !menuNeeded) {
                 filteredOptions.push(option)
             } else {
                 !menuNeeded && filteredOptions.push({id: i, title: "Menu", link: "/menu"});
@@ -57,7 +59,12 @@ const NavigationBar = ({ screenSize }) => {
             justifyContent: 'space-between',
             margin: 0,
         }}>
-            {viewableItems.map(option => <NavBarOption key={option.id} option={option} />)}
+            {viewableItems.map(option =>
+                <NavBarOption
+                    key={option.id}
+                    option={option}
+                    history={history}
+                />)}
         </div>
     </div>
     )

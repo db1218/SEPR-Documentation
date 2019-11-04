@@ -5,6 +5,7 @@ import { NavigationOptions } from "../config";
 
 export default class Menu extends React.Component {
     render() {
+        const { history } = this.props;
         return (
            <div 
             style={{
@@ -17,7 +18,10 @@ export default class Menu extends React.Component {
                <h1>Contents Page</h1>
                {NavigationOptions.map(option => (
                    <div key={option.id}>
-                       <Link to={option.link}>
+                       <Link
+                            onClick={() => history.updateCurrentPath(option.link)}
+                            to={option.link}
+                        >
                         <h3 style={{
                             
                         }}>
