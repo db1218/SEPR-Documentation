@@ -17,7 +17,7 @@ const NavBarOption = ({ option }) => (
                 {option.title}
             </h6>
             :
-            <FontAwesomeIcon icon={faBars} size="lg" />
+            <FontAwesomeIcon icon={faBars} size="2x" />
             }
         </Link>
     </div>  
