@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import "./layout.css"
-import Header from './components/header.js';
+import Header from './components/Header.js';
 import Dashboard from './pages/Dashboard.js';
 import Requirements from './pages/Requirements';
 import RiskAssessment from './pages/RiskAssessment';
