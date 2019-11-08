@@ -20,9 +20,11 @@ const SectionContents = ({ refUrl, DeviceWidth }) => {
         })
     }, [refUrl])
     return(
-        <div onClick={() => pressed()}>
-            <h2>{refUrl.name}</h2>
-            {!hidden && fileUrl && <PDFViewer file={fileUrl} width={DeviceWidth * 0.75} />}
+        <div>
+            <div onClick={() => pressed()}>
+                <h2>{refUrl.name}</h2>
+            </div>
+            {!hidden && <PDFViewer file={fileUrl} width={DeviceWidth * 0.75} />}
         </div>
         
         )
