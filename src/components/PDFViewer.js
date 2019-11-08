@@ -7,6 +7,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 const PDFViewer = ({ file, width }) => {
   const [pageNumber, setPageNumber ] = useState(1);
+  const [loaded, setLoaded ] = useState(false);
 
   const goToPrevPage = () => setPageNumber(pageNumber - 1);
   const goToNextPage = () => setPageNumber(pageNumber + 1);
@@ -20,11 +21,11 @@ const PDFViewer = ({ file, width }) => {
       overflow: 'hidden',
     }}>
       <div id="PDFView">
-        <Document file={file}>
+        <Document file={file} onLoadSuccess={() => setLoaded(true)}>
           <Page style={{display: 'flex'}} pageNumber={pageNumber} width={width} />
         </Document>
       </div>
-      <div style={{
+      {loaded && <div style={{
             display: 'flex',
             flexDirection: 'row',
             width: width,
@@ -32,7 +33,7 @@ const PDFViewer = ({ file, width }) => {
           }}>
             <Button style={{marginLeft: '8rem'}} onClick={() => goToPrevPage()}>Prev</Button>
             <Button style={{marginRight: '8rem'}} onClick={() => goToNextPage()}>Next</Button>
-          </div>
+        </div>}
     </div>
   );
 }
