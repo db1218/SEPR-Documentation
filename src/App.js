@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import "./layout.css"
+import "./layout.css";
 import Header from './components/Header.js';
 import Dashboard from './pages/Dashboard.js';
 import Requirements from './pages/Requirements';
@@ -25,7 +25,7 @@ function throttle (callback, limit) {
               wait = false;
           }, limit);
       }
-  }
+  };
 }
 
 export default function App() {
@@ -38,18 +38,18 @@ export default function App() {
       setCurrentPath(path);
       setPreviousPath(currentPath);
     }
-  }
+  };
 
   const handleWindowResize = () => {
     setWidth(window.innerWidth);
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('resize', throttle(handleWindowResize, 250));
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
-  })
+  });
   
   return (
     <Router>

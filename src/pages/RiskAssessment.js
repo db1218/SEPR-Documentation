@@ -1,11 +1,12 @@
-import React from "react"
-import "../layout.css"
+import React from "react";
+import PropTypes from "prop-types";
+import "../layout.css";
 import { storage } from "../config";
 import Section from '../components/Section';
 
 export default class RiskAssessment extends React.Component {
     render() {
-        const storageRef = storage.ref().child('/Risk Assessment');
+        const storageRef = storage.ref().child('/5Risk Assessment');
         const { DeviceWidth } = this.props;
         return (
            <div style={{
@@ -17,6 +18,14 @@ export default class RiskAssessment extends React.Component {
                <h1>Welcome to the Risk Assessment page</h1>
                <Section storageRef={storageRef} DeviceWidth={DeviceWidth} withControls={true} />
            </div>
-        )
+        );
     }
 }
+
+RiskAssessment.propTypes = {
+    DeviceWidth: PropTypes.number,
+};
+
+RiskAssessment.defaultProps = {
+    DeviceWidth: 0,
+};

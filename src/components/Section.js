@@ -1,6 +1,6 @@
-import PropTypes from "prop-types"
-import React, { useState, useEffect } from "react"
-import { getFolderItems } from "../config";
+import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
+import { getFolderItems, extractHeader } from "../config";
 import PDFViewer from './PDFViewer';
 
 const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
@@ -9,7 +9,8 @@ const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
 
     const pressed = () => {
         setHidden(!hidden);
-    }
+    };
+
     useEffect(() => {
         getFolderItems(refUrl).then(items => {
             const urls = [];
@@ -19,15 +20,15 @@ const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
                     if (items.length - 1 === i) {
                         setFileUrls(urls);
                     }
-                })
-            })  
-        })
-    }, [refUrl])
+                });
+            });  
+        });
+    }, [refUrl]);
 
     return(
         <div>
             {showHeader && <div onClick={() => pressed()}>
-                <h2>{refUrl.name}</h2>
+                <h2>{extractHeader(refUrl).title}</h2>
             </div>}
             {fileUrls && fileUrls.map(fileUrl => (
                 (!hidden || !showHeader) && <div key={fileUrl}>
@@ -36,8 +37,8 @@ const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
                 </div>
             ))}
         </div>
-        )
-}
+        );
+};
 
 const Section = ({ DeviceWidth, storageRef, withControls }) => {
     const [headers, setHeaders ] = useState(undefined);
@@ -46,31 +47,48 @@ const Section = ({ DeviceWidth, storageRef, withControls }) => {
         if (storageRef.name === '') {
             getFolderItems(storageRef, true).then(items => {
                 setHeaders(items);
-            })
+            });
         } else {
             setHeaders([storageRef]);
         }
-    }, [storageRef])
+    }, [storageRef]);
 
     return(
     <div>
-        {headers && headers.map(header => (
+        {!headers ? <h3>Loading...</h3> : headers.sort((a,b) => extractHeader(a).id >= extractHeader(b)).map(header => (
             <div key={header.name}>
                 <SectionContents showHeader={headers.length > 1} refUrl={header} DeviceWidth={DeviceWidth} withControls={withControls} />
             </div> 
         ))}
     </div>
-    )
-}
+    );
+};
 
 Section.propTypes = {
     DeviceWidth: PropTypes.number,
     storageRef: PropTypes.object,
-}
+    withControls: PropTypes.bool,
+};
 
 Section.defaultProps = {
     DeviceWidth: 0,
     storageRef: undefined,
-}
+    withControls: false,
+};
 
-export default Section
+SectionContents.propTypes = {
+    showHeader: PropTypes.bool,
+    refUrl: PropTypes.object,
+    DeviceWidth: PropTypes.number,
+    withControls: PropTypes.bool,
+};
+
+SectionContents.defaultProps = {
+    showHeader: false,
+    refUrl: undefined,
+    DeviceWidth: 0,
+    storageRef: undefined,
+    withControls: false,
+};
+
+export default Section;

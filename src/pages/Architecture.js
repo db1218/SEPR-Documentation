@@ -1,11 +1,12 @@
-import React from "react"
-import "../layout.css"
+import React from "react";
+import PropTypes from "prop-types";
+import "../layout.css";
 import { storage } from "../config";
 import Section from '../components/Section';
 
 export default class Architecture extends React.Component {
     render() {
-        const storageRef = storage.ref().child('/Architecture');
+        const storageRef = storage.ref().child('/2Architecture');
         const { DeviceWidth } = this.props;
         return (
            <div style={{
@@ -17,6 +18,14 @@ export default class Architecture extends React.Component {
                <h1>Welcome to the Architecture page</h1>
                <Section storageRef={storageRef} DeviceWidth={DeviceWidth} withControls={true} />
            </div>
-        )
+        );
     }
 }
+
+Architecture.propTypes = {
+    DeviceWidth: PropTypes.number,
+};
+
+Architecture.defaultProps = {
+    DeviceWidth: 0,
+};

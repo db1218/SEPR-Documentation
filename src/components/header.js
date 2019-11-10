@@ -1,8 +1,8 @@
-import PropTypes from "prop-types"
-import React from "react"
+import PropTypes from "prop-types";
+import React from "react";
 import { Link } from "react-router-dom";
 
-import NavigationBar from "./NavigationBar"
+import NavigationBar from "./NavigationBar";
 
 export default class Header extends React.Component {
   render() {
@@ -32,14 +32,16 @@ export default class Header extends React.Component {
             <NavigationBar screenSize={DeviceWidth} history={history} />
           </div>
         </header>
-    )
+    );
   }
 }
 
 Header.propTypes = {
   DeviceWidth: PropTypes.number,
-}
+  history: PropTypes.object,
+};
 
 Header.defaultProps = {
   DeviceWidth: window.innerWidth,
-}
+  history: undefined,
+};

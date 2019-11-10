@@ -1,13 +1,14 @@
-import PropTypes from "prop-types"
-import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NavigationOptions } from "../config";
 
 const NavBarOption = ({ option, history }) => (
     <div style={{
-        marginRight: '1.5rem',
+        marginLeft: '1.5rem',
+        textAlign: 'center',
     }}
         onClick={() => history.updateCurrentPath(history.currentPath === option.link ? history.previousPath : option.link)}
     >
@@ -23,7 +24,7 @@ const NavBarOption = ({ option, history }) => (
             }
         </Link>
     </div>  
-)
+);
 
 const NavigationBar = ({ screenSize, history }) => {
     const [viewableItems, setViewableItems ] = useState(NavigationOptions);
@@ -32,7 +33,7 @@ const NavigationBar = ({ screenSize, history }) => {
     //TODO calculate values dynamically
     const siteTitleWidth = 500;
     const optionWidth = 200;
-    const subsequentOptionDifference = 12;
+    const subsequentOptionDifference = 5;
     const remainingWidth = screenSize - siteTitleWidth;
 
     useEffect(() => {
@@ -40,15 +41,15 @@ const NavigationBar = ({ screenSize, history }) => {
         let menuNeeded = false;
         NavigationOptions.map((option, i) => {
             if ((i + 1) * (optionWidth - ((i + 1) * subsequentOptionDifference)) <= remainingWidth && !menuNeeded) {
-                filteredOptions.push(option)
+                filteredOptions.push(option);
             } else {
                 !menuNeeded && filteredOptions.push({id: i, title: "Menu", link: "/menu"});
                 menuNeeded = true;
             }
             return setViewableItems(filteredOptions);
-        })
+        });
         setCurrentSize(screenSize);
-    }, [currentSize, remainingWidth, screenSize])
+    }, [currentSize, remainingWidth, screenSize]);
 
     return(
     <div>
@@ -67,23 +68,27 @@ const NavigationBar = ({ screenSize, history }) => {
                 />)}
         </div>
     </div>
-    )
-}
+    );
+};
 
 NavigationBar.propTypes = {
     screenSize: PropTypes.number,
-}
+    history: PropTypes.object,
+};
 
 NavigationBar.defaultProps = {
     screenSize: 0,
-}
+    history: undefined,
+};
 
 NavBarOption.propTypes = {
     option: PropTypes.object,
-}
+    history: PropTypes.object,
+};
 
 NavBarOption.defaultProps = {
     option: {id: 0, title: "Menu", link: "/menu"},
-}
+    history: undefined,
+};
 
-export default NavigationBar
+export default NavigationBar;

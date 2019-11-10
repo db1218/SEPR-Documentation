@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { Button } from 'react-bootstrap';
 import { Document, Page, pdfjs } from "react-pdf";
 //Fix required by react-pdf
@@ -35,14 +35,18 @@ const PDFViewer = ({ file, width, withControls }) => {
         </div>}
     </div>
   );
-}
+};
 
 PDFViewer.propTypes = {
   file: PropTypes.string,
-}
+  width: PropTypes.number,
+  withControls: PropTypes.bool,
+};
 
 PDFViewer.defaultProps = {
   file: "",
-}
+  width: 0,
+  withControls: false,
+};
 
-export default PDFViewer
+export default PDFViewer;

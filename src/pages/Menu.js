@@ -1,5 +1,6 @@
-import React from "react"
-import "../layout.css"
+import React from "react";
+import PropTypes from "prop-types";
+import "../layout.css";
 import { Link } from "react-router-dom";
 import { NavigationOptions } from "../config";
 
@@ -32,6 +33,14 @@ export default class Menu extends React.Component {
                    
                ))}
            </div>
-        )
+        );
     }
 }
+
+Menu.propTypes = {
+    history: PropTypes.object,
+};
+
+Menu.defaultProps = {
+    DeviceWidth: undefined,
+};

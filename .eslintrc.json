@@ -21,5 +21,6 @@
         "react"
     ],
     "rules": {
+        "semi": [2, "always"]
     }
 }
