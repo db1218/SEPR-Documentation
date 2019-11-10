@@ -3,9 +3,9 @@ import "../layout.css"
 import { storage } from "../config";
 import Section from '../components/Section';
 
-export default class Requirements extends React.Component {
+export default class ProjectPlanning extends React.Component {
     render() {
-        const storageRef = storage.ref().child('/Requirements');
+        const storageRef = storage.ref().child('/Project Planning');
         const { DeviceWidth } = this.props;
         return (
            <div style={{
@@ -14,7 +14,7 @@ export default class Requirements extends React.Component {
                 justifyContent: 'center',
                 alignItems: DeviceWidth <= 700 ? 'center' : 'flex-start',
             }}>
-               <h1>Welcome to the Requirements page</h1>
+               <h1>Welcome to the Project Planning page</h1>
                <Section storageRef={storageRef} DeviceWidth={DeviceWidth} withControls={true} />
            </div>
         )

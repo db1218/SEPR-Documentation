@@ -32,7 +32,7 @@ const NavigationBar = ({ screenSize, history }) => {
     //TODO calculate values dynamically
     const siteTitleWidth = 500;
     const optionWidth = 200;
-    const subsequentOptionDifference = 10;
+    const subsequentOptionDifference = 12;
     const remainingWidth = screenSize - siteTitleWidth;
 
     useEffect(() => {

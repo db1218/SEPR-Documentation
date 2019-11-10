@@ -5,7 +5,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 //Fix required by react-pdf
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const PDFViewer = ({ file, width }) => {
+const PDFViewer = ({ file, width, withControls }) => {
   const [pageNumber, setPageNumber ] = useState(1);
   const [loaded, setLoaded ] = useState(false);
 
@@ -17,15 +17,14 @@ const PDFViewer = ({ file, width }) => {
       style={{
       display: 'flex',
       flexDirection: 'column',
-      width: width,
       overflow: 'hidden',
     }}>
-      <div id="PDFView">
-        <Document file={file} onLoadSuccess={() => setLoaded(true)}>
-          <Page style={{display: 'flex'}} pageNumber={pageNumber} width={width} />
+      <div>
+        <Document file={file} width={width} onLoadSuccess={() => setLoaded(true)}>
+          <Page pageNumber={pageNumber} width={width} />
         </Document>
       </div>
-      {loaded && <div style={{
+      {loaded && withControls && <div style={{
             display: 'flex',
             flexDirection: 'row',
             width: width,

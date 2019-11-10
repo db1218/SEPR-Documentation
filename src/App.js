@@ -11,6 +11,7 @@ import Requirements from './pages/Requirements';
 import RiskAssessment from './pages/RiskAssessment';
 import Architecture from './pages/Architecture';
 import Menu from './pages/Menu';
+import ProjectPlanning from './pages/ProjectPlanning';
 
 const DeviceInfoContext = createContext(window.innerWidth);
 
@@ -68,13 +69,16 @@ export default function App() {
           }}>
             <Switch >
               <Route path="/architecture">
-                <Architecture />
+                <Architecture DeviceWidth={width} />
+              </Route>
+              <Route path="/projectplanning">
+                <ProjectPlanning DeviceWidth={width} />
               </Route>
               <Route path="/riskassessment">
-                <RiskAssessment />
+                <RiskAssessment DeviceWidth={width} />
               </Route>
               <Route path="/requirements">
-                <Requirements />
+                <Requirements DeviceWidth={width} />
               </Route>
               <Route path="/menu">
                 <Menu history={{currentPath, previousPath, updateCurrentPath}} />
