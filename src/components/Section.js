@@ -11,6 +11,21 @@ const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
         setHidden(!hidden);
     };
 
+    const reloadPDF = () => {
+        console.log('reload');
+        getFolderItems(refUrl).then(items => {
+            const urls = [];
+            items.map((item, i) => {
+                return item.getDownloadURL().then(url => {
+                    urls.push(url);
+                    if (items.length - 1 === i) {
+                        setFileUrls(urls);
+                    }
+                });
+            });  
+        });
+    };
+
     useEffect(() => {
         getFolderItems(refUrl).then(items => {
             const urls = [];
@@ -33,7 +48,12 @@ const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
             {fileUrls && fileUrls.map(fileUrl => (
                 (!hidden || !showHeader) && <div key={fileUrl}>
                     <a href={fileUrl} rel="noopener noreferrer" target="_blank"><h3>Open PDF in a new tab</h3></a>
-                    <PDFViewer file={fileUrl} width={DeviceWidth <= 1450 ? DeviceWidth * 0.75 : DeviceWidth * 0.5} withControls={withControls} />
+                    <PDFViewer
+                        file={fileUrl}
+                        width={DeviceWidth <= 1450 ? DeviceWidth * 0.75 : DeviceWidth * 0.5}
+                        withControls={withControls}
+                        reloadPDF={() => reloadPDF()}
+                    />
                 </div>
             ))}
         </div>
