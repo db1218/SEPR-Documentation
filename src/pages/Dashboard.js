@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../layout.css";
-import { storage } from "../config";
-import Section from '../components/Section';
+import Iframe from 'react-iframe';
 
 const Dashboard = ({ DeviceWidth }) => {
-    const storageRef = storage.ref().child('/');
     return (
         <div style={{
             display: 'flex',
@@ -20,8 +18,15 @@ const Dashboard = ({ DeviceWidth }) => {
 
             <div>
              <a href="https://github.com/ArchieGodfrey/SEPR-Documentation"><h5>The Github repo for this project can be found here</h5></a>
+             <a href="https://salt-and-sepr.web.app"
+                rel="noopener noreferrer" target="_blank">
+                <h5>Click here to open the documentation in a new page</h5>
+            </a>
             </div>
-            <Section storageRef={storageRef} DeviceWidth={DeviceWidth} />
+            <Iframe url="https://salt-and-sepr.web.app"
+                width={DeviceWidth > 960 ? 960 : DeviceWidth}
+                height={window.innerHeight - window.innerHeight * 0.21}
+            />
         </div>
     );
 };
