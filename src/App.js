@@ -12,6 +12,8 @@ import RiskAssessment from './pages/RiskAssessment';
 import Architecture from './pages/Architecture';
 import Menu from './pages/Menu';
 import ProjectPlanning from './pages/ProjectPlanning';
+import Testing from './pages/Testing';
+import Implementation from './pages/Implementation';
 
 const DeviceInfoContext = createContext(window.innerWidth);
 
@@ -68,6 +70,12 @@ export default function App() {
             paddingTop: 0,
           }}>
             <Switch >
+            <Route path="/implementation">
+                <Implementation DeviceWidth={width} />
+              </Route>
+              <Route path="/testing">
+                <Testing DeviceWidth={width} />
+              </Route>
               <Route path="/architecture">
                 <Architecture DeviceWidth={width} />
               </Route>

@@ -51,4 +51,6 @@ export const NavigationOptions = [
     { id: 1, title: "Project Planning", link: "/projectplanning"},
     { id: 2, title: "Requirements", link: "/requirements"},
     { id: 3, title: "Risk Assessment", link: "/riskassessment"},
+    { id: 4, title: "Testing", link: "/testing"},
+    { id: 5, title: "Implementation", link: "/implementation"},
   ];
