@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
 import { getFolderItems, extractHeader } from "../config";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExpandArrowsAlt, faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 import PDFViewer from './PDFViewer';
 
 const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
@@ -12,7 +14,6 @@ const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
     };
 
     const reloadPDF = () => {
-        console.log('reload');
         getFolderItems(refUrl).then(items => {
             const urls = [];
             items.map((item, i) => {
@@ -42,11 +43,14 @@ const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
 
     return(
         <div>
-            {showHeader && <div onClick={() => pressed()}>
-                <h2>{extractHeader(refUrl).title}</h2>
+            {showHeader && <div onClick={() => pressed()} style={{display: 'flex', flex: 1, flexDirection: 'row', paddingTop: '1.45rem', paddingBottom: '1.45rem'}}>
+                <h2 style={{
+                    textDecorationLine: "underline"
+                }}>{extractHeader(refUrl).title}</h2>
+                {hidden ? <FontAwesomeIcon icon={faExpandArrowsAlt} /> : <FontAwesomeIcon icon={faCompressArrowsAlt}/>}
             </div>}
             {fileUrls && fileUrls.map(fileUrl => (
-                (!hidden || !showHeader) && <div key={fileUrl}>
+                (!hidden || !showHeader) && <div key={fileUrl} style={{display: 'flex', flex: 1, flexDirection: 'column' }}>
                     <a href={fileUrl} rel="noopener noreferrer" target="_blank"><h3>Open PDF in a new tab</h3></a>
                     <PDFViewer
                         file={fileUrl}
@@ -61,21 +65,21 @@ const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
 };
 
 const Section = ({ DeviceWidth, storageRef, withControls }) => {
-    const [headers, setHeaders ] = useState(undefined);
+    const [headers, setHeaders ] = useState([]);
 
     useEffect(() => {
-        if (storageRef.name === '') {
-            getFolderItems(storageRef, true).then(items => {
-                setHeaders(items);
-            });
-        } else {
-            setHeaders([storageRef]);
-        }
+        getFolderItems(storageRef, true).then(folders => {
+            if (folders.length > 1) {
+                setHeaders(folders);
+            } else {
+                setHeaders([storageRef]);
+            }
+        });
     }, [storageRef]);
 
     return(
-    <div>
-        {!headers ? <h3>Loading...</h3> : headers.sort((a,b) => extractHeader(a).id >= extractHeader(b)).map(header => (
+    <div style={{display: 'flex', flex: 1, flexDirection: 'column' }}>
+        {headers.length === 0 ? <h3>Loading...</h3> : headers.sort((a,b) => extractHeader(a).id >= extractHeader(b)).map(header => (
             <div key={header.name}>
                 <SectionContents showHeader={headers.length > 1} refUrl={header} DeviceWidth={DeviceWidth} withControls={withControls} />
             </div> 
