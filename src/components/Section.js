@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpandArrowsAlt, faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 import PDFViewer from './PDFViewer';
 
-const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
+const SectionContents = ({ index, showHeader, refUrl, DeviceWidth, withControls }) => {
     const [fileUrls, setFileUrls ] = useState(undefined);
     const [hidden, setHidden ] = useState(true);
 
@@ -43,14 +43,17 @@ const SectionContents = ({ showHeader, refUrl, DeviceWidth, withControls }) => {
 
     return(
         <div>
-            {showHeader && <div onClick={() => pressed()} style={{display: 'flex', flex: 1, flexDirection: 'row', paddingTop: '1.45rem', paddingBottom: '1.45rem'}}>
+            {showHeader && <div onClick={() => pressed()}
+                style={{display: 'flex', flex: 1, flexDirection: 'row', justifyContent: 'flex-end', position: 'absolute', left: 0, paddingRight: '1rem', paddingTop: '1rem',
+                    borderTopRightRadius: (index % 2) == 0 ? 50 : 0, borderBottomRightRadius: (index % 2) > 0 ? 50 : 0, marginTop: index * 150,
+                    backgroundColor: 'rgb(50,125,247)', width: DeviceWidth <= 675 ? DeviceWidth * 0.62 : DeviceWidth * 0.405 }}>
                 <h2 style={{
                     textDecorationLine: "underline"
                 }}>{extractHeader(refUrl).title}</h2>
                 {hidden ? <FontAwesomeIcon icon={faExpandArrowsAlt} /> : <FontAwesomeIcon icon={faCompressArrowsAlt}/>}
             </div>}
             {fileUrls && fileUrls.map(fileUrl => (
-                (!hidden || !showHeader) && <div key={fileUrl} style={{display: 'flex', flex: 1, flexDirection: 'column' }}>
+                (!hidden || !showHeader) && <div key={fileUrl} style={{display: 'flex', flex: 1, flexDirection: 'column', paddingTop: (index + 1) * 120}}>
                     <a href={fileUrl} rel="noopener noreferrer" target="_blank"><h3>Open PDF in a new tab</h3></a>
                     <PDFViewer
                         file={fileUrl}
@@ -78,10 +81,10 @@ const Section = ({ DeviceWidth, storageRef, withControls }) => {
     }, [storageRef]);
 
     return(
-    <div style={{display: 'flex', flex: 1, flexDirection: 'column' }}>
-        {headers.length === 0 ? <h3>Loading...</h3> : headers.sort((a,b) => extractHeader(a).id >= extractHeader(b)).map(header => (
+    <div style={{display: 'flex', flex: 1, flexDirection: 'column', marginTop: '2rem' }}>
+        {headers.length === 0 ? <h3>Loading...</h3> : headers.sort((a,b) => extractHeader(a).id >= extractHeader(b)).map((header, i) => (
             <div key={header.name}>
-                <SectionContents showHeader={headers.length > 1} refUrl={header} DeviceWidth={DeviceWidth} withControls={withControls} />
+                <SectionContents index={headers.length > 1 ? i : -1} showHeader={headers.length > 1} refUrl={header} DeviceWidth={DeviceWidth} withControls={withControls} />
             </div> 
         ))}
     </div>
@@ -101,6 +104,7 @@ Section.defaultProps = {
 };
 
 SectionContents.propTypes = {
+    index: PropTypes.number,
     showHeader: PropTypes.bool,
     refUrl: PropTypes.object,
     DeviceWidth: PropTypes.number,
@@ -108,6 +112,7 @@ SectionContents.propTypes = {
 };
 
 SectionContents.defaultProps = {
+    index: 0,
     showHeader: false,
     refUrl: undefined,
     DeviceWidth: 0,
