@@ -2,7 +2,16 @@
 // Firebase config
 import firebase from 'firebase/app';
 import 'firebase/storage';
-import { firebaseConfig } from './firebaseConfig';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDnwmwsmeon2AIVXMOK-tScDX4DVi7gvOA",
+  authDomain: "sepr-docs.firebaseapp.com",
+  databaseURL: "https://sepr-docs.firebaseio.com",
+  projectId: "sepr-docs",
+  storageBucket: "sepr-docs.appspot.com",
+  messagingSenderId: "289846557989",
+  appId: "1:289846557989:web:2797d01fe4a1b5a000aecc"
+}
 
 firebase.initializeApp(firebaseConfig);
 export const storage = firebase.storage();
