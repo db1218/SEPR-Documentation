@@ -19,31 +19,32 @@ const Dashboard = ({ DeviceWidth }) => {
             <div>
                 {DeviceWidth > 850 && <div style={{position: 'absolute', left: DeviceWidth * 0.6}}>
                     <Iframe
-                        url="https://salt-and-sepr.web.app"
+                        url="https://mozzarella-bytes.web.app"
                         width={DeviceWidth * 0.3}
                         height={window.innerHeight * 0.5}
                     />
-                    <a href="https://salt-and-sepr.web.app" rel="noopener noreferrer" target="_blank">
+                    <a href="https://mozzarella-bytes.web.app" rel="noopener noreferrer" target="_blank">
                         <h4 style={{textAlign: 'center', color: 'black'}}><strong>View documentation in a new page</strong></h4>
                     </a>
                 </div>}
 
                 <h1 style={{fontSize: '3.5rem', marginBottom: '1rem'}}>Play <strong style={{fontSize: '5rem'}}>Kroy!</strong></h1>
-                <h3 style={{ marginBottom: '1rem'}}>Created by <strong style={{fontSize: '2.5rem'}}>Salt and SEPR</strong></h3>
-                    <a href="https://drive.google.com/a/york.ac.uk/file/d/1yjQCnpAWV_J7Hk0eDUBXWFZsT8MuFupM/view?usp=sharing" rel="noopener noreferrer" target="_blank">
-                        <h5>Download the game here</h5>
+                <h3>Created by <strong style={{fontSize: '2.5rem'}}>Salt and SEPR</strong></h3>
+                <h3>and <strong style={{fontSize: '2.5rem'}}>Mozzarella Bytes</strong></h3>
+                    <a href="https://drive.google.com/open?id=1Q6pzBbQ6Afke1br5P5AFBGy3w5k7-WkC" rel="noopener noreferrer" target="_blank">
+                        <h5>Download Kroy 2.0 here</h5>
                     </a>
                     <p>The following links contain details about our project</p>
                     <ul>
                         <li><a href="https://docs.google.com/document/d/1Lt1E5ticyUY1MxAbgrukSLbxdkpNmpdKNJyOXPUJBpw/edit?usp=sharing" rel="noopener noreferrer" target="_blank">
-                            <h5>The User manual for Kroy can be found here</h5>
+                            <h5>The User manual can be found here</h5>
                         </a></li>
-                        <li><a href="https://github.com/ArchieGodfrey/Kroy" rel="noopener noreferrer" target="_blank">
-                            <h5>The Github repo for the game can be found here</h5>
+                        <li><a href="https://github.com/db1218/KroyAssessment3" rel="noopener noreferrer" target="_blank">
+                            <h5>The Github Repo can be found here</h5>
                         </a></li>
                     </ul>
-                    
-                {DeviceWidth <= 850 && <Iframe url="https://salt-and-sepr.web.app"
+
+                {DeviceWidth <= 850 && <Iframe url="https://mozzarella-bytes.web.app"
                     width={DeviceWidth > 960 ? 960 : DeviceWidth}
                     height={window.innerHeight - window.innerHeight * 0.21}
                 />}
