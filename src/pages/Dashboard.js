@@ -36,9 +36,14 @@ const Dashboard = ({ DeviceWidth }) => {
                     </a>
                     <p>The following links contain details about our project</p>
                     <ul>
-                        <li><a href="https://docs.google.com/document/d/1Lt1E5ticyUY1MxAbgrukSLbxdkpNmpdKNJyOXPUJBpw/edit?usp=sharing" rel="noopener noreferrer" target="_blank">
-                            <h5>The User manual can be found here</h5>
-                        </a></li>
+                        <li>
+                            <a href="https://drive.google.com/open?id=1EJbD1UtnCrEhXhQBZQ02ONL9n_cQVLFN" rel="noopener noreferrer" target="_blank">
+                                <h5>The User manual can be found here</h5>
+                            </a>
+                            <a href="https://drive.google.com/open?id=1G3tEeq1R2g8iOFt1mKaVjKqGHn94kh59" rel="noopener noreferrer" target="_blank">
+                                <h5>Editable word document here</h5>
+                            </a>
+                        </li>
                         <li><a href="https://github.com/db1218/KroyAssessment3" rel="noopener noreferrer" target="_blank">
                             <h5>The Github Repo can be found here</h5>
                         </a></li>
