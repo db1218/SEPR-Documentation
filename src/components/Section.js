@@ -23,7 +23,7 @@ const SectionContents = ({ index, showHeader, refUrl, DeviceWidth, withControls 
                         setFileUrls(urls);
                     }
                 });
-            });  
+            });
         });
     };
 
@@ -37,7 +37,7 @@ const SectionContents = ({ index, showHeader, refUrl, DeviceWidth, withControls 
                         setFileUrls(urls);
                     }
                 });
-            });  
+            });
         });
     }, [refUrl]);
 
@@ -85,7 +85,7 @@ const Section = ({ DeviceWidth, storageRef, withControls }) => {
         {headers.length === 0 ? <h3>Loading...</h3> : headers.sort((a,b) => extractHeader(a).id >= extractHeader(b)).map((header, i) => (
             <div key={header.name}>
                 <SectionContents index={headers.length > 1 ? i : -1} showHeader={headers.length > 1} refUrl={header} DeviceWidth={DeviceWidth} withControls={withControls} />
-            </div> 
+            </div>
         ))}
     </div>
     );

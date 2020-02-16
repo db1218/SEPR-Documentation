@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "sepr-docs"
+  },
+  "targets": {
+    "sepr-docs": {
+      "hosting": {
+        "javadocs": [
+          "sepr-javadocs"
+        ],
+        "sepr-docs": [
+          "sepr-docs"
+        ]
+      }
+    }
   }
 }

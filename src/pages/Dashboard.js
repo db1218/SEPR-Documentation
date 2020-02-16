@@ -19,11 +19,11 @@ const Dashboard = ({ DeviceWidth }) => {
             <div>
                 {DeviceWidth > 850 && <div style={{position: 'absolute', left: DeviceWidth * 0.6}}>
                     <Iframe
-                        url="https://mozzarella-bytes.web.app"
+                        url="https://sepr-javadocs.web.app/"
                         width={DeviceWidth * 0.3}
                         height={window.innerHeight * 0.5}
                     />
-                    <a href="https://mozzarella-bytes.web.app" rel="noopener noreferrer" target="_blank">
+                    <a href="https://sepr-javadocs.web.app/" rel="noopener noreferrer" target="_blank">
                         <h4 style={{textAlign: 'center', color: 'black'}}><strong>View documentation in a new page</strong></h4>
                     </a>
                 </div>}
@@ -31,7 +31,7 @@ const Dashboard = ({ DeviceWidth }) => {
                 <h1 style={{fontSize: '3.5rem', marginBottom: '1rem'}}>Play <strong style={{fontSize: '5rem'}}>Kroy!</strong></h1>
                 <h3>Created by <strong style={{fontSize: '2.5rem'}}>Salt and SEPR</strong></h3>
                 <h3>and <strong style={{fontSize: '2.5rem'}}>Mozzarella Bytes</strong></h3>
-                    <a href="https://drive.google.com/open?id=1Q6pzBbQ6Afke1br5P5AFBGy3w5k7-WkC" rel="noopener noreferrer" target="_blank">
+                    <a href="https://drive.google.com/open?id=1ZZNEvYyqc9ZeQQ7Ipq7p5apHqte8zrTt" rel="noopener noreferrer" target="_blank">
                         <h5>Download Kroy 2.0 here</h5>
                     </a>
                     <p>The following links contain details about our project</p>
